@@ -30,7 +30,9 @@ class _MainAppViewState extends State<MainAppView> {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: screensList[_currentIndex],
+      body: SafeArea(
+        child: screensList[_currentIndex]!,
+      ),
       extendBody: true,
       bottomNavigationBar: CustomFloatingNavBar(
         currentIndex: _currentIndex,

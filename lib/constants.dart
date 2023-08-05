@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 // endpoints==================
-const baseUrl = 'https://www.osamapro.online/api';
+// const baseUrl = 'http://192.168.88.245:8000/api';
+const baseUrl = 'http://www.osamapro.online/api';
 const loginUrl = '$baseUrl/login';
 const linksUrl = '$baseUrl/links';
-
+const editLinkUrl = '$baseUrl/links/';
 // ============= STYLE CONSTS ==============
 
 const kScaffoldColor = Color(0xffFDFDFD);
@@ -21,3 +22,15 @@ const kLightPrimaryColor = Color(0xffE7E5F1);
 const kLightSecondaryColor = Color(0xffFFE6A6);
 const kLightDangerColor = Color(0xffFEE2E7);
 const kOnLightDangerColor = Color(0xff783341);
+
+//styles
+
+const kUserInfoStyle = TextStyle(color: Colors.white, fontSize: 18);
+const kTitleStyle = TextStyle(
+  fontSize: 18,
+  letterSpacing: 3,
+  fontWeight: FontWeight.bold,
+);
+const kLinkStyle = TextStyle(
+  fontSize: 16,
+);

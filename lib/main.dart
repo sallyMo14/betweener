@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tt9_betweener_challenge/views/add_link_view.dart';
 import 'package:tt9_betweener_challenge/views/home_view.dart';
 import 'package:tt9_betweener_challenge/views/loading_view.dart';
 import 'package:tt9_betweener_challenge/views/login_view.dart';
@@ -35,6 +36,8 @@ class MyApp extends StatelessWidget {
       home: const LoadingView(),
       routes: {
         LoadingView.id: (context) => const LoadingView(),
+        // EditLinkView.id: (context) => const EditLinkView(Link),
+        AddLinkView.id: (context) => const AddLinkView(),
         LoginView.id: (context) => const LoginView(),
         RegisterView.id: (context) => const RegisterView(),
         HomeView.id: (context) => const HomeView(),
@@ -45,3 +48,28 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//startActionPane: ActionPane(
+//                               motion: StretchMotion(),
+//                               children: [
+//                                 SlidableAction(
+//                                   onPressed: (context){
+//
+//                                   },
+//                                   icon: ,
+//                                 ),
+//                               ],
+//                             ),
+
+// IconButton(
+//     // onPressed: () {
+//     //   Navigator.push(context, MaterialPageRoute(builder: (context) {
+//     //     return EditLinkView(
+//     //       link: widget.link,
+//     //     );
+//     //   }));
+//     // },
+//     onPressed: widget.updateOnPressed,
+//     icon: Icon(Icons.edit)),
+// IconButton(
+//     onPressed: widget.deleteOnPressed, icon: Icon(Icons.delete)),
