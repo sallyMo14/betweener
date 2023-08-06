@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tt9_betweener_challenge/views/follow_view.dart';
 
-import '../constants.dart';
-import '../models/user.dart';
+import '../../constants.dart';
+import '../../models/follow.dart';
+import '../../models/user.dart';
 
 class MyCard extends StatefulWidget {
   final Future<User> user;
-  const MyCard({super.key, required this.user});
+  final Future<Follow> followingData;
+  const MyCard({super.key, required this.user, required this.followingData});
 
   @override
   State<MyCard> createState() => _MyCardState();
@@ -27,12 +30,11 @@ class _MyCardState extends State<MyCard> {
             children: [
               CircleAvatar(
                 radius: 56,
-                backgroundColor: Colors.blue,
-                child: Image.network(
+                backgroundImage: NetworkImage(
                   "https://www.southernliving.com/thmb/t4CDcQzE1dJvfCt2VTHt3yRoCNc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/valentine-bouquet-gettyimages-55949391-2000-d675e30abd0243f1bf1d13ecb212d45b.jpg",
 ////////////////////////////////////////////////////hgw,,,,vmالصوورة
-                  fit: BoxFit.cover,
                 ),
+                backgroundColor: Colors.blue,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,29 +82,51 @@ class _MyCardState extends State<MyCard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.yellow,
-                        ),
-                        child: Text(
-                          "Followers",
-                          style: TextStyle(fontSize: 10),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return FollowView(data: widget.followingData);
+                          }));
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.yellow,
+                          ),
+                          child: FutureBuilder(
+                            future: widget.followingData,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text(
+                                    'Follwers ${snapshot.data?.followersCount}',
+                                    style: TextStyle(fontSize: 10));
+                              }
+                              return Text('loading');
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(
                         width: 8,
                       ),
                       Container(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(15),
                           color: Colors.yellow,
                         ),
-                        child: Text(
-                          "Following",
-                          style: TextStyle(fontSize: 10),
+                        child: FutureBuilder(
+                          future: widget.followingData,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Text(
+                                  'Follweing ${snapshot.data?.followingCount}',
+                                  style: TextStyle(fontSize: 10));
+                            }
+                            return Text('loading');
+                          },
                         ),
                       ),
                     ],
@@ -122,4 +146,6 @@ class _MyCardState extends State<MyCard> {
       ]),
     );
   }
+
+  fun() {}
 }

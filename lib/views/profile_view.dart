@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tt9_betweener_challenge/constants.dart';
+import 'package:tt9_betweener_challenge/controllers/follow_controller.dart';
 import 'package:tt9_betweener_challenge/controllers/user_controller.dart';
 import 'package:tt9_betweener_challenge/models/link.dart';
 import 'package:tt9_betweener_challenge/models/user.dart';
 import 'package:tt9_betweener_challenge/views/edit_link_view.dart';
-import 'package:tt9_betweener_challenge/widgets/LinkCard.dart';
+import 'package:tt9_betweener_challenge/views/widgets/LinkCard.dart';
 
 import '../controllers/link_controller.dart';
-import '../widgets/MyCard.dart';
+import '../models/follow.dart';
 import 'add_link_view.dart';
+import 'widgets/MyCard.dart';
 
 class ProfileView extends StatefulWidget {
   static String id = '/profileView';
@@ -23,10 +25,12 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   late Future<User> user;
   late Future<List<Link>> links;
+  late Future<Follow> followingData;
   updateUI() {
     setState(() {
       user = getLocalUser();
       links = getLinks(context);
+      followingData = follow(context);
     });
   }
 
@@ -49,7 +53,10 @@ class _ProfileViewState extends State<ProfileView> {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            MyCard(user: user),
+            MyCard(
+              user: user,
+              followingData: followingData,
+            ),
             FutureBuilder(
               future: links,
               builder: (context, snapshot) {
@@ -147,4 +154,10 @@ class _ProfileViewState extends State<ProfileView> {
       ),
     );
   }
+
+  getFollowersNumber() {
+    follow(context).then((value) {});
+  }
+
+  getFollowingNumber() {}
 }

@@ -92,3 +92,22 @@ void deleteLink(int id) async {
 
   return Future.error('Somthing wrong');
 }
+
+Future<List<Link>> getUserLinks(context, User user) async {
+  final response = await http.get(Uri.parse(linksUrl),
+      headers: {'Authorization': 'Bearer ${user.token}'});
+
+  // print(jsonDecode(response.body)['links']);
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body)['links'] as List<dynamic>;
+
+    return data.map((e) => Link.fromJson(e)).toList();
+  }
+
+  if (response.statusCode == 401) {
+    Navigator.pushReplacementNamed(context, LoginView.id);
+  }
+
+  return Future.error('Somthing wrong');
+}

@@ -11,7 +11,8 @@ class CustomFloatingNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24.0, 0, 24.0, 24.0),
+      padding: EdgeInsets.only(left: 18, right: 18, bottom: 18),
+      // padding: const EdgeInsets.fromLTRB(24.0, 0, 24.0, 24.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: BottomNavigationBar(
@@ -28,7 +29,7 @@ class CustomFloatingNavBar extends StatelessWidget {
             BottomNavigationBarItem(
                 icon: Icon(Icons.emergency_share), label: ''),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: '')
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
           ],
         ),
       ),

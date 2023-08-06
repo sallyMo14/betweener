@@ -9,6 +9,7 @@ import 'add_link_view.dart';
 
 class HomeView extends StatefulWidget {
   static String id = '/homeView';
+
   const HomeView({super.key});
 
   @override
