@@ -8,7 +8,11 @@ Betweener is an all-in-one link hub that makes it simple to share all your conta
 * Unique shareable URL for each user
 * Built with Flutter for smooth cross-platform performance
 
-# Technologies :
+# Technologies 
 * Flutter
 * Dart
   
+# Libraries
+* email_validator
+* http
+* shared_preferences
